@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% block title %} Index {% endblock %}
+
+{% block content %}
+    <h1>Health is wealth</h1>
+    <p>Your health is important for us. Now Effortlessly manage your appointments with our doctors. &nbsp;&nbsp;
+        <a href="{% url 'booking' %}" >Click here</a>
+    </p>
+    <br><br>
+
+    {% load static %}
+    <img src="{% static 'img1.jpg' %}" alt="Doctor's Office" >
+
+{% endblock %}

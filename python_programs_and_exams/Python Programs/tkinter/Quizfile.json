@@ -1,0 +1,15 @@
+{
+  "questions": [
+    "1. Who developed Python Programming Language?",
+    "2. Is Python case sensitive when dealing with identifiers?",
+    "3. Is Python code compiled or interpreted?",
+    "4. What will be the answer of 5%2?",
+    "5. Which of the following is not a core data type in Python programming?" ],
+  "answers": [3,1,3,4,3],
+  "options": [
+    ["Wick van Rossum","Rasmus Lerdorf","Guido van Rossum","Niene Stom"],
+    ["yes","no","interpreter decided","none of the above"],
+    ["compiled","interpreted","both","none"],
+    ["2.5","2","0","1"],
+    ["Tuples","Lists","Class","Dictionary"]  ]
+}

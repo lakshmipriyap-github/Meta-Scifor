@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href=" {{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+<header>
+    <h1 align="center" >
+        {% block heading %}{% endblock %}
+    </h1>
+</header>
+
+<main>
+ <div class= "row">
+            <div class="column1" style="background-color:#aaa;">
+                    <nav align="center">
+                        <img src=" {{ url_for('static',filename='img.jpeg') }}"> <br><br>
+                        <a href="/" > Home </a> <br><br>
+                        <a href=" {{ url_for('Exp') }}" > Experience </a><br><br>
+                        <a href=" {{ url_for('Project') }}" > Projects done </a><br><br>
+                        <a href=" {{ url_for('Edu') }}" > Educational Qualification </a><br><br>
+                        <a href=" {{ url_for('Personalinfo') }}" > About me </a><br><br>
+                    </nav>
+            </div>
+            <div class="column2" style="background-color:#aaa;" >
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+</main>
+<footer>
+    <h6>
+        &copy; 2024 My Portfolio
+    </h6>
+</footer>
+</body>
+</html>

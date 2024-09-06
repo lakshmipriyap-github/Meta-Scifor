@@ -1,0 +1,40 @@
+body{
+    font-family: Arial;
+    background-color: #ebdef0;
+    color : #008080;
+  }
+  header{
+  background-color: #008080;
+  color: #ffffaa;
+  }
+
+  nav a {
+  color : #ffffaa;
+  align : center
+  }
+
+ footer {
+    background: #008080;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+ }
+ .column1 {
+  float: left;
+  width: 20.33%;
+  padding: 10px;
+  height: 520px;
+
+}
+ .column2 {
+  float: right;
+  width: 75%;
+  padding: 10px;
+  height: 520px;
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;

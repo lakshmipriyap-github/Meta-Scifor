@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header style="background: #008080">
+        <h1 >ABC HOSPITAL</h1>
+       <marquee scrollmount="50">
+            <h5>Appointment Scheduling Application</h1>
+       </marquee>
+    <nav>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'booking' %}">Book an Appointment</a>
+            <a href="{% url 'doctors' %}">Doctors</a>
+            <a href="{% url 'department' %}">Departments</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+    </nav>
+    </header>
+   <!-- <div class="container">
+        <section class="sect">
+            {% block content %} {% endblock %}
+        </section>
+    </div> -->
+<footer style="background: #008080 ">
+   Emergency Contact Number : 1234-567890
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &copy; 2024 Doctor's Booking System. All Rights Reserved.
+</footer>
+</body>
+</html>
