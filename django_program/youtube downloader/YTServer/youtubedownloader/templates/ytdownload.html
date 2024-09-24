@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/html">
+<style>
+        div {
+            color: 008080;
+            margin: 2px;
+            font-size: 25px;
+        }
+</style>
+<body bgcolor="pink">
+<div>
+    <h1 align="center">
+        <marquee scrollamount="12"> 
+            Youtube video downloader 
+        </marquee>
+    </h1> 
+</div>
+<div align="center">
+    <form action="" method="post">
+      {% csrf_token %}
+      <label for="link">Enter URL:</label>
+      <input type="text" id="link" name="link"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
+
