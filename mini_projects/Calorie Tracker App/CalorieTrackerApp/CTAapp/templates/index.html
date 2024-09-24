@@ -1,0 +1,190 @@
+ {% load static %}
+ {% load mathfilters%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+   <!-- <link href="styles.css" rel="stylesheet" type="text/css" /> -->
+    <title>Plan my Diet</title>
+</head>
+
+
+{% load static %}
+<body style="background-image: url({% static 'n.jpg' %}); background-repeat: no-repeat;background-size: cover;">
+    <header style="background-color: #880015;z-index:100;width: 100%;font-size: 26px;height: 15vh; position: fixed;color:#FFFE91">
+         <h1 align="center">
+             <img  src=" {% static 'cal1.png' %}" />
+                The Calorie Bowl
+             <h5 align="center">
+                 <a href="{% url 'home' %}" style="color: #FFFE91;">Home</a>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <a href="{% url 'logout_view'  %}" style="color: #FFFE91;">Logout</a>
+             </h5>
+        </h1>
+    </header>
+
+
+    <div class="container" style="padding-top: 125px; padding-bottom:80px; ">
+        <div style="text-align:center" class="row">
+            <div class="col-md-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group column" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <label class="col-md-2" style="width: 300px;">
+                            <h4>Add items in your diet </h4>
+                        </label>
+                        <select class="col-md-6 form-control" style="width: 500px; align:right;" name="food_consumed" id="food_consumed">
+                            {% for food in foods %}
+                            <option value="{{food.name}}">{{food.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-success" style="width: 200px;" type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <br>
+
+        <h3 style="text-align:center">Your Calorie Progress bar</h3>
+        <br>
+        <div class="row">
+            <div class="col-md-9 offset-1">
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="0"
+                        aria-valuemin="0" aria-valuemax="0"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        {% if  consumed_food %}
+        <div class="row" align="center">
+            <div class="col-md-7" >
+                <div>
+                    <h4 style="text-align:center; background-color:#EDFFBC;"> Your Diet's Nutrient Breakdown</h4>
+                </div>
+
+                <table id="table" class="table table-striped " >
+                    <tr class="bg-info text-white" >
+                        <th style="text-align:center; background-color:#880015;">Food item</th>
+                        <th style="text-align:center; background-color:#880015;">Carbs(gm)</th>
+                        <th style="text-align:center; background-color:#880015;">Protein(gm)</th>
+                        <th style="text-align:center; background-color:#880015;">Fats(gm)</th>
+                        <th style="text-align:center; background-color:#880015;">Calories(Kcal)</th>
+                        <th style="text-align:center; background-color:#880015;">Remove Item</th>
+                    </tr>
+                    {% for c in consumed_food %}
+                    <tr>
+                        <td style="text-align:center; background-color : #EDFFBC;">{{c.food_consumed.name}}</td>
+                        <td style="text-align:center; background-color : #EDFFBC;">{{c.food_consumed.carbs}}</td>
+                        <td style="text-align:center; background-color : #EDFFBC;">{{c.food_consumed.protein}}</td>
+                        <td style="text-align:center; background-color : #EDFFBC;">{{c.food_consumed.fats}}</td>
+                        <td style="text-align:center; background-color : #EDFFBC;">{{c.food_consumed.calories}}</td>
+                        <td style="text-align:center; background-color : #EDFFBC;"><a class="btn btn-danger" href="{% url 'delete' c.pk %}">X</a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                    <tr class="bg-info ">
+                        <td style="text-align:center; background-color : #EDFFBC;" id="name"><b>Total</b></td>
+                        <td style="text-align:center; background-color : #EDFFBC;" id="totalCarbs"><b></b></td>
+                        <td style="text-align:center; background-color : #EDFFBC;" id="totalProtien"><b></b></td>
+                        <td style="text-align:center; background-color : #EDFFBC;" id="totalFats"><b></b></td>
+                        <td style="text-align:center; background-color : #EDFFBC;" id="totalCalories"><b></b></td>
+
+
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col-md-5 " style="background-color:#EDFFBC;">
+                <div class="card-header text-white bg-info">
+                    <h4 style="text-align:center; background-color:#880015;">Nutrients Graph</h4>
+                </div>
+                <div class="col-md-12">
+
+                    <canvas id="myChart" width="400" height="400"></canvas>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    <footer style="background-color: #880015; bottom: 0; height:6%; width: 100%;position:fixed; left : 0;color:#FFFE91; text-align: center; ">
+         &copy; 2024 Healthy Eating. All Rights Reserved.
+     </footer>
+
+</body>
+<script>
+    var table = document.getElementById("table");
+    var carbs = 0, protein = 0, fats = 0, calories = 0;
+
+    for (var i = 1; i < table.rows.length - 1; i++) {
+        console.log(table.rows[i].cells[1].innerHTML);
+        carbs += parseFloat(table.rows[i].cells[1].innerHTML);
+        carbs = Math.round(carbs);
+        protein += parseFloat(table.rows[i].cells[2].innerHTML);
+        protein = Math.round(protein)
+        fats += parseFloat(table.rows[i].cells[3].innerHTML);
+        fats = Math.round(fats);
+        calories += parseFloat(table.rows[i].cells[4].innerHTML);
+        calories = Math.round(calories);
+    }
+    console.log(fats);
+
+    document.getElementById("totalCarbs").innerHTML = '<b>' + carbs + '(gm)</b>';
+    document.getElementById("totalProtien").innerHTML = '<b>' + protein + '(gm)</b>';
+    document.getElementById("totalFats").innerHTML = '<b>' + fats + '(gm)</b>';
+    document.getElementById("totalCalories").innerHTML = '<b>' + calories + '(Kcal)</b>';
+
+    var calPer = (calories /2000) * 100;
+    document.getElementsByClassName("progress-bar")[0].setAttribute("style", "width:" + calPer + "%");
+
+
+    var total = carbs + protein + fats;
+    var carbsP = Math.round((carbs / total) * 100);
+    var protienP = Math.round((protein / total) * 100);
+    var fatsP = Math.round((fats / total) * 100);
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Carbs ' + carbsP + '%', 'Protein ' + protienP + '%', 'Fats ' + fatsP + '%'],
+            datasets: [{
+                label: '# of Votes',
+                data: [carbsP, protienP, fatsP],
+                backgroundColor: [
+                    'rgba(125,200, 100, .6)',
+                    'rgba(235, 51, 5, 0.42)',
+                    'rgba(255, 206, 86, 1)',
+
+                ],
+                borderColor: [
+                    'rgba(80, 0, 242, 0.42)',
+                    'rgba(80, 0, 242, 0.42)',
+                    'rgba(80, 0, 242, 0.42)',
+
+                ],
+                borderWidth: 1
+            }]
+        },
+
+    });
+
+</script>
+
+</html>
