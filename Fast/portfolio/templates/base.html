@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+</head>
+<body bgcolor="#ccffcc"  >
+    <header style="background : #993333;">
+        <h1 align="center"> {% block title %} My Portfolio {% endblock %}</h1>
+        <div align="center">
+            <h2>
+                <a href="/"> About me</a> &nbsp; &nbsp;
+                <a href="/academics"> Academics </a>&nbsp; &nbsp;
+                <a href="/exp"> Experience </a>&nbsp; &nbsp;
+                <a href="/skill"> Skills</a>
+            </h2>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer style="background : #993333; position:absolute; bottom:0; width:100%;">
+        <h3 style="color:#000" align="center">  Contact : 123456789 | Email : abc@gmail.com</h3>
+    </footer>
+</body>
+</html>
