@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block content %}
+
+<section class="container text-center ">
+  <h3 align="left" >Welcome "{{ user }} "</h3>
+  <hr style="border: 3px solid #008080;">
+  <br>
+
+  <div class="row">
+    <div class="col-md-3">
+      <a href="{% url 'student_course_list' %}">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/course.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Courses
+            </h5>
+            View various courses available with syllabus.You can enroll for the courses.
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="{% url 'student_quiz_list' %}">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/exam.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Exam
+            </h5>
+            Test your knowledge in various subject by attending the Exams. You can attend a Exam only once.
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="{% url 'students_notes' %}">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/note.jpeg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Notes
+            </h5>
+            Make your notes for future use. They will be kept as long as you wish.
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="{% url 'youtube' %}">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/yt.jpeg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Youtube
+            </h5>
+            Quick access youtube contents from your study portal.
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+    <br><br><br>
+
+  <div class="row">
+    <div class="col-md-3">
+      <a href="{% url 'assignment' %}">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/assignment.jpeg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Assignments
+            </h5>
+            Create Assignments ,set deadlines. Work on it on your convenience.
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="{% url 'todo' %}">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/todo.jpeg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              To-Do
+            </h5>
+            Add your to-do lists for your day and remove them as you finish
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3 ">
+      <a href="{% url 'books' %}">
+        <div class="card mt-20">
+          <img class="card-img-top" src="{% static 'images/ebook.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Books
+            </h5>
+            Quick browse the online books available.
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock content %}

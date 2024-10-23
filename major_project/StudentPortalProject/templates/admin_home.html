@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="container text-center ">
+    <div class="container mt-5" >
+        <h1>Admin Dashboard</h1>
+        <hr style="border: 3px solid #008080;"><br>
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <a href="{% url 'course_list' %}">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'images/courseadmin.jpeg' %}" alt="Courses image">
+                        <div class="card-body">
+                            <h5 class="card-title">Add Courses</h5>
+                            Add courses for students to enroll.
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <a href="{% url 'admin_quiz_list' %}">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'images/adminexam.jpeg' %}" alt="Quiz image">
+                        <div class="card-body">
+                            <h5 class="card-title">Add Exams</h5>
+                            Manage Exam for students.
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 mb-3">
+                <a href="{% url 'notes' %}">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'images/adminnotes.jpeg' %}" alt="Quiz image">
+                        <div class="card-body">
+                            <h5 class="card-title">Add notes</h5>
+                            Add notes for students.
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Notes{% endblock %}
+{% block content %}
+
+{% if notes %}
+<div class="container">
+    <div class="row">
+        {% for note in notes %}
+        <div class="col-md-3">
+            <a href="{% url 'detail_notes' note.id %}">
+                <div class="card">
+                    <div class="card-header">{{ note.title }}</div>
+                    <div class="card-body">{{ note.Desc|slice:"0:100" }}</div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        <br><br>
+    </div>
+</div>
+{% else %}
+<div class="container text-center">
+    <p class="alert alert-warning">No notes uploaded.</p>
+</div>
+{% endif %}
+<br><br>
+
+{% endblock content %}

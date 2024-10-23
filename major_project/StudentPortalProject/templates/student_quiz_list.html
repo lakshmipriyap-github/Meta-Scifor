@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Quiz list - students{% endblock %}
+{% block content %}
+
+{% if quizzes %}
+    <h1 align="center">Available Exams</h1>
+    <hr style="border: 3px solid #008080;">
+    <table class="table table-striped table-bordered table-hover " >
+        <thead  style = "background-color: #008080;">
+            <tr>
+                    <th scope="col">Index</th>
+                    <th scope="col">Exam List</th>
+                    <th scope="col">Status and Score</th>
+            </tr>
+        </thead>
+        <tbody style = "background-color: #68b2b2;">
+        {% for quiz in quizzes %}
+            {% with attempt=attempts|get_item:quiz.id %}
+            <tr>
+                <th> {{ forloop.counter }} </th>
+
+                 {% if attempt %}
+                        {% if attempt.is_attempted %}
+                            <td> <a href = "#"> {{ quiz.title }} </a> </td>
+                            <td> Locked: You have already attended the Exam. <br>
+                                Score: {{ attempt.score }} out of {{ attempt.total_questions }}
+                            </td>
+                        {% else %}
+                            <td> <a href = "{% url 'answer_quiz' quiz.id %}"> {{ quiz.title }}  </a> </td>
+                            <td> Unattended </td>
+                        {% endif %}
+                {% else %}
+                        <td> <a href = "{% url 'answer_quiz' quiz.id %}"> {{ quiz.title }}  </a> </td>
+                        <td> Unattended </td>
+                {% endif %}
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div align="center">
+        <h4 >No Exams are Available!</h4>
+    </div>
+{% endif %}
+{% endblock  %}

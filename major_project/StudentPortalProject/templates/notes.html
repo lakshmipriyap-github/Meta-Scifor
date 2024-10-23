@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Notes{% endblock %}
+{% block content %}
+
+{% if notes %}
+<div class="container">
+    <div class="row">
+        {% for note in notes %}
+        <div class="col-md-3">
+            <a href="{% url 'detail_notes' note.id %}">
+                <div class="card">
+                    <div class="card-header">{{ note.title }}</div>
+                    <div class="card-body">{{ note.Desc|slice:"0:100" }}</div>
+                    {% if user.is_staff %}
+                    <div class="card-footer mt-auto">
+                        <a href="{% url 'delete_notes' note.id %}">
+                            <i class="fa fa-trash fa-2x"></i>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        <br><br>
+    </div>
+</div>
+{% else %}
+<p>no notes uploaded </p>
+{% endif %}
+<br><br>
+
+{% if user.is_staff %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Create Notes</legend>
+        </fieldset>
+        {{ form|crispy }}
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">
+                Create
+            </button>
+        </div>
+    </form>
+</div>
+{% endif %}
+
+{% endblock content %}

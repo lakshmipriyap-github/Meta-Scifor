@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin Create Quiz {% endblock %}
+
+{% block content %}
+<h1 align="center">Create New Exam</h1>
+<hr style="border: 3px solid #008080;">
+<div align="center">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Exam Title:</label>
+        <input type="text" name="title" required>
+        <button type="submit">Create Exam</button>
+    </form>
+</div>
+{% endblock %}

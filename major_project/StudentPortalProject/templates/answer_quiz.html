@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Answer the Quiz{% endblock %}
+{% block content %}
+
+    <h1 align="center">{{ quiz.title }}</h1> <hr>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <div >
+                <ol>
+                    {% for question in questions %}
+                    <li>
+                        {{ question.text }} <br>
+                        {% for answer in question.answers.all %}
+                            <label>
+                                <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}">
+                                {{ answer.text }}
+                            </label><br>
+                        {% endfor %}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div>
+                 <button type="submit" style="justify-content: center;" >Submit Answers</button>
+            </div>
+
+        </form>
+    </div>
+
+{% endblock %}
